@@ -15,7 +15,7 @@ public class Villager : MonoBehaviour
 
     protected Vector2 destination;
     Vector2 movement;
-    float speed = 3;
+    protected float speed = 3;
 
     void Start()
     {
@@ -70,6 +70,7 @@ public class Villager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && isSelected && !clickingOnSelf)
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            speed = 3;
         }
 
         animator.SetFloat("Movement", movement.magnitude);
