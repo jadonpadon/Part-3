@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Villager : MonoBehaviour
 {
-    protected Rigidbody2D rb;
+    Rigidbody2D rb;
     Animator animator;
 
     bool clickingOnSelf;
@@ -59,18 +58,18 @@ public class Villager : MonoBehaviour
         if (movement.magnitude < 0.1)
         {
             movement = Vector2.zero;
+            speed = 3;
         }
 
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);
     }
 
-    void Update()
+    protected virtual void Update()
     {
         //left click: move to the click location
         if (Input.GetMouseButtonDown(0) && isSelected && !clickingOnSelf)
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            speed = 3;
         }
 
         animator.SetFloat("Movement", movement.magnitude);
@@ -91,5 +90,4 @@ public class Villager : MonoBehaviour
     {
         return ChestType.Villager;
     }
-
 }
