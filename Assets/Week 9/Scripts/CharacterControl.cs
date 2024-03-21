@@ -1,19 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
+    public TMP_Dropdown dropdown;
+    public List<Villager> availableVillagers;
+
     public TMPro.TextMeshProUGUI currentSelection;
     public static Villager SelectedVillager { get; private set; }
-    public static void SetSelectedVillager(Villager villager)
+
+    public void SetSelectedVillager(int index)
     {
+
         if(SelectedVillager != null)
         {
             SelectedVillager.Selected(false);
         }
-        SelectedVillager = villager;
+        SelectedVillager = availableVillagers[index];
         SelectedVillager.Selected(true);
     }
 
